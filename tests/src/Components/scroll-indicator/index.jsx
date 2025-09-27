@@ -1,21 +1,22 @@
 import React,{useState,useEffect} from 'react'
 import './styles.css'
 
+
 function ScrollIndicator({url}){
 
     const [data, setData] = useState([]);
-    const [loading, setLoading] = useState(false);
+    const [loading, setLoading] = useState(false)
     const [error, setError] = useState('');
-    const [scrollPercantage, setScrollPercantage] = useState(0)
+    const [scrollProgress, setScrollProgress] = useState(0)
 
     async function fetchData(getUrl){
         try{
             setLoading(true)
-            const response = await fetch(getUrl);
-            const result = await response.json();
-            if(result && result.products && result.products.length > 0){
-                setLoading(false)
+            const response = await fetch(getUrl)
+            const result = await response.json()
+            if(result && result.products && result.products.length){
                 setData(result.products)
+                setLoading(false)
             }
         }catch(error){
             setLoading(false)
@@ -29,11 +30,12 @@ function ScrollIndicator({url}){
             document.documentElement.scrollTop,
             document.documentElement.scrollHeight,
             document.documentElement.clientHeight
-        );
-        const howMuchScrolled = document.body.scrollTop || document.documentElement.scrollTop;
-        const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
-        console.log((howMuchScrolled / height) * 100)
-        setScrollPercantage((howMuchScrolled / height ) * 100)
+        )
+
+
+        const howMuchScrolled = document.body.scrollTop || document.documentElement.scrollTop
+        const height = document.documentElement.scrollHeight - document.documentElement.clientHeight
+        setScrollProgress((howMuchScrolled / height) * 100)
     }
 
     useEffect(() => {
@@ -41,18 +43,16 @@ function ScrollIndicator({url}){
     },[url])
 
     useEffect(() => {
-        window.addEventListener('scroll',handleScrollPercantage);
-        return () => {
-            window.removeEventListener('scroll',handleScrollPercantage)
-        }
-    })
+        window.addEventListener('scroll',handleScrollPercantage)
+        return () => window.removeEventListener('scroll',handleScrollPercantage)
+    },[])
 
     if(loading){
-        return<div>Loading Data Please wait</div>
+        return <div>Loading data please be patient</div>
     }
 
     if(error !== ''){
-        return<div>There was an error</div>
+        return<div>Error occured in loading data</div>
     }
 
     return(
@@ -60,14 +60,13 @@ function ScrollIndicator({url}){
             <div className="top-container">
                 <h1>Custom Scroll Indicator</h1>
                 <div className="scroll-progress-tracking-container">
-                    <div className="current-progress-bar" style={{width: `${scrollPercantage}%`}}></div>
+                    <div className="current-progress-bar" style={{width: `${scrollProgress}%`}}></div>
                 </div>
             </div>
-
-            <div className="content-container">
+            <div className="data-container">
                 {
-                    data && data.length > 0 ?
-                    data.map(dataItem => <div className="data-container">{dataItem.title}</div>)
+                    data && data.length > 0 ? 
+                    data.map(dataItem => <div>{dataItem.title}</div>)
                     : null
                 }
             </div>

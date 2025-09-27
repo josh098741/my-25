@@ -1,22 +1,22 @@
 .top-container{
     position: fixed;
     top: 0;
-    background: #096bfd;
-    width:  100%;
-    text-align: center;
+    width: 100%;
     z-index: 1;
+    background: #096bfd;
+    text-align: center;
 }
 
 .scroll-progress-tracking-container{
-    background: rgb(16, 242, 16);
     height: 10px;
+    background: rgb(4, 255, 9);
     width: 100%;
 }
 
 .current-progress-bar{
     width: 100%;
+    background: purple;
     height: 10px;
-    background:  purple;
 }
 
 .data-container{
