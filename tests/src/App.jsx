@@ -1,9 +1,9 @@
-import Accordian from './Components/accordian/index'
+import ScrollIndicator from "./Components/scroll-indicator"
 
 function App(){
 
   return(
-    <Accordian />
+    <ScrollIndicator url={'https://dummyjson.com/products?limit=150'} />
   );
 }
 
