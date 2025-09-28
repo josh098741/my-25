@@ -6,3 +6,24 @@ body{
     padding: 8px;
 }
 
+.heading{
+    display: flex;
+    justify-content: center;
+    margin-bottom: 12px;
+}
+
+.tab-item{
+    display: inline-block;
+    font-size: 30px;
+    font-weight: bold;
+    background: purple;
+    color: white;
+    border: none;
+    cursor: pointer;
+    padding: 10px 15px;
+    transition: background 0.5s ease;
+}
+
+.tab-item.active{
+    background: rgb(0, 255, 0);
+}
