@@ -1,32 +1,13 @@
 import React,{useState} from 'react'
 
+function Tabs({tabContent, onChange}){
 
-function Tabs({tabsContent, onChange}){
-
-    const [currentTabIndex, setCurrentTabIndex] = useState(0)
-
-    function handleOnClick(getCurrentIndex){
-        setCurrentTabIndex(getCurrentIndex)
-        onChange(getCurrentIndex)
-    }
+    const [urrentTabIndex, setCurrentTabIndex] = useState(0)
 
     return(
         <div className="wrapper">
-            <div className="heading">
-                {
-                    tabsContent.map((tabItem, index) => (
-                        <div key={tabItem.label} className={`tab-item ${currentTabIndex === index ? 'active':''}`} onClick={() => handleOnClick(index)}>
-                            <span>{tabItem.label}</span>
-                        </div>
-                    ))
-                }
-            </div>
-
-            <div className="content">
-                {
-                    tabsContent[currentTabIndex] && tabsContent[currentTabIndex].component
-                }
-            </div>
+            <div className="heading"></div>
+            <div className="data-container"></div>
         </div>
     );
 }
